@@ -119,12 +119,11 @@
             <param name="contactId">Guid</param>
             <returns>HttpStatusCode</returns>
         </member>
-        <member name="M:ContactsManager.API.Controllers.ContactsController.DeleteContact(System.Guid,System.String)">
+        <member name="M:ContactsManager.API.Controllers.ContactsController.DeleteContact(System.Guid)">
             <summary>
             Delete Contact Detail with respect to Contact Id
             </summary>
             <param name="contactId">Guid</param>
-            <param name="status">string</param>
             <returns>HttpStatusCode</returns>
         </member>
         <member name="P:ContactsManager.API.Models.ContactDetailRequestModel.FirstName">

@@ -36,9 +36,8 @@ namespace ContactsManager.Repository.Repository
         /// <summary>
         /// GetAll
         /// </summary>
-        /// <param name="predicate">Predicate</param>
-        /// <returns></returns>
-        IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
+        /// <returns>TEntity</returns>
+        IEnumerable<TEntity> GetAll();
 
         /// <summary>
         /// Get By Id

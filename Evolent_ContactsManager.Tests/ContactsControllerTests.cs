@@ -46,7 +46,7 @@ namespace Evolent_ContactsManager.Tests
         [TestMethod]
         public void GetContact_HappyPath()
         {
-            contactsService.Setup(x => x.GetAllActiveContacts(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(new List<ContactInformation> {
+            contactsService.Setup(x => x.GetAllContacts()).Returns(new List<ContactInformation> {
                 new ContactInformation
                 {
                     Email = "dhruval1@gmail.com",
@@ -414,7 +414,7 @@ namespace Evolent_ContactsManager.Tests
             });
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.DeleteContact(Guid.NewGuid(), "InActive");
+            var response = contactsController.DeleteContact(Guid.NewGuid());
 
             Assert.IsInstanceOfType(response, typeof(OkNegotiatedContentResult<string>));
 
@@ -429,7 +429,7 @@ namespace Evolent_ContactsManager.Tests
             contactsService.Setup(c => c.UpdateContact(It.IsAny<ContactInformation>()));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.DeleteContact(Guid.NewGuid(), "InActive");
+            var response = contactsController.DeleteContact(Guid.NewGuid());
 
             Assert.IsInstanceOfType(response, typeof(BadRequestErrorMessageResult));
 

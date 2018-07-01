@@ -47,9 +47,9 @@ namespace ContactsManager.Services
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <returns>ContactInformation</returns>
-        public IEnumerable<ContactInformation> GetAllActiveContacts(Expression<Func<ContactInformation, bool>> predicate)
+        public IEnumerable<ContactInformation> GetAllContacts()
         {
-            return _contactInformationRepository.GetAll(predicate);
+            return _contactInformationRepository.GetAll();
         }
 
         /// <summary>

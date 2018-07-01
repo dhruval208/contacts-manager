@@ -67,11 +67,10 @@ namespace ContactsManager.Repository.Repository
         /// <summary>
         /// GetAll Records
         /// </summary>
-        /// <param name="predicate">Predicate</param>
         /// <returns>TEntity</returns>
-        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
+        public IEnumerable<TEntity> GetAll()
         {
-            return Context.Set<TEntity>().Where(predicate).ToList();
+            return Context.Set<TEntity>().ToList();
         }
 
         /// <summary>

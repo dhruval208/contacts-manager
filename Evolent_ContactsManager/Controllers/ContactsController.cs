@@ -50,15 +50,15 @@ namespace ContactsManager.API.Controllers
         /// <returns>List of ContactDetail</returns>
         [Route("get")]
         [HttpGet]
-        [SwaggerResponse(HttpStatusCode.OK, "List of Active Contacts", typeof(IEnumerable<ContactDetailResponseModel>))]
-        [SwaggerResponse(HttpStatusCode.NoContent, "No Active Contact Details Found")]
+        [SwaggerResponse(HttpStatusCode.OK, "List of Active | InActive Contacts", typeof(IEnumerable<ContactDetailResponseModel>))]
+        [SwaggerResponse(HttpStatusCode.NoContent, "No Active | InActive Contact Details Found")]
         [SwaggerResponse(HttpStatusCode.InternalServerError, "Exception Occured to Generate Response", typeof(Exception))]
         public IHttpActionResult GetContacts()
         {
             try
             {
-                //Get contacts with status is true
-                var allContacts = _contactsService.GetAllActiveContacts(x => x.Status == true);
+                //Get contacts with status is true || false
+                var allContacts = _contactsService.GetAllContacts();
 
                 if (allContacts.Count() == 0)
                     return NotFound();
@@ -169,24 +169,24 @@ namespace ContactsManager.API.Controllers
         /// Delete Contact Detail with respect to Contact Id
         /// </summary>
         /// <param name="contactId">Guid</param>
-        /// <param name="status">string</param>
         /// <returns>HttpStatusCode</returns>
         [Route("delete/{contactId}")]
         [HttpDelete]
         [SwaggerResponse(HttpStatusCode.OK, "Contact Details Successfully Deleted", typeof(HttpStatusCode))]
         [SwaggerResponse(HttpStatusCode.InternalServerError, "Exception Occured while Deleting Contact Detail", typeof(Exception))]
-        [SwaggerResponse(HttpStatusCode.BadRequest, "Duplicate - Invalid-Missing Information Provided")]
-        public IHttpActionResult DeleteContact(Guid contactId, string status)
+        [SwaggerResponse(HttpStatusCode.BadRequest, "Invalid ContactId provided")]
+        public IHttpActionResult DeleteContact(Guid contactId)
         {
             try
             {
-                var isUserIdExists = _contactsService.IsAnyExists(x => x.UserId == contactId);
+                //If any ContactInformation exists with ActiveStatus, Then only mark it as Deleted.
+                var isUserIdExists = _contactsService.IsAnyExists(x => x.UserId == contactId && x.Status == true);
 
                 if (!isUserIdExists)
                     throw new ArgumentException("Invalid ContactId. Please enter valid ContactId");
 
                 var contactInformation = _contactsService.GetContactById(contactId);
-                contactInformation.Status = status.ToLower() == "active" ? true : false;
+                contactInformation.Status = false;
 
                 _contactsService.UpdateContact(contactInformation);
 

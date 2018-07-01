@@ -38,7 +38,7 @@ namespace ContactsManager.Services
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <returns>ContactInformation</returns>
-        IEnumerable<ContactInformation> GetAllActiveContacts(Expression<Func<ContactInformation, bool>> predicate);
+        IEnumerable<ContactInformation> GetAllContacts();
 
         ContactInformation GetContactById(Guid contactId);
     }
