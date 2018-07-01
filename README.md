@@ -15,7 +15,7 @@ Contacts Manager is an API application which consist total number of 4 API's
  - DeleteContacts: Delete Contact Detail with respect to Contact Id [HTTPDELETE]
  
  All API's are deployed at: http://traintkt.in/swagger
- (On deployed version, Update and Delete contacts are defined as HttpGet as HttpPut and HttpDelete verbs are not supported on GoDaddy Hosting. Need to activate these verbs over there)
+ (On deployed version, Update and Delete contacts are defined as HttpPost|HttpGet as HttpPut and HttpDelete verbs are not supported on GoDaddy Hosting. Need to activate these verbs over there)
  
  ## Setup of an Application:
  - Application is developed with a Code First Approch and Generic Repository Pattern. It will automatically create Database as well as "ContactInformation" table.
@@ -33,7 +33,7 @@ Contacts Manager is an API application which consist total number of 4 API's
   "FirstName": "Dhruval",
   "LastName": "Dave",
   "Email": "dhruval20@gmail.com",
-  "PhoneNumber": "+919730823490",
+  "PhoneNumber": "+91 9730823490",
   "Status": "Active"
 }
 ```
@@ -53,7 +53,7 @@ Contacts Manager is an API application which consist total number of 4 API's
   "FirstName": "Dhruval",
   "LastName": "Dave",
   "Email": "dhruval20@gmail.com",
-  "PhoneNumber": "+919730823490",
+  "PhoneNumber": "+91 9730823490",
   "Status": "Active"
 }
  ```
@@ -69,4 +69,4 @@ Contacts Manager is an API application which consist total number of 4 API's
 - Duplication is considered for the both Email And PhoneNumber
 
 ## Delete Contact:
-- Based on ContactId and Status in URL Parameters, Application will Active || Inactive specific record
+- Based on ContactId and Status in URL Parameters, Application will Inactive specific record
