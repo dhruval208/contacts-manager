@@ -19,7 +19,7 @@ Contacts Manager is an API application which consist total number of 4 API's
  
  ## Setup of an Application:
  - Application is developed with a Code First Approch and Generic Repository Pattern. It will automatically create Database as well as "ContactInformation" table.
- - Connection strings are predefined with Windows Authentication. If it still fails to establish then please make accordingly changes in connection strings at these places:
+ - Connection strings are predefined with Windows Authentication. If it still fails to establish then please make accordingly changes in connection strings at these places (Change Data Source with respect your system setup):
  1) ..\Evolent_ContactsManager\Web.config
  2) ..\ContactsManager.Data\App.config
  
