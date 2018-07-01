@@ -1,9 +1,13 @@
-﻿using ContactsManager.API.Models;
+﻿#region Namespaces
+
+using ContactsManager.API.Models;
 using ContactsManager.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+
+#endregion
 
 namespace ContactsManager.API
 {
@@ -11,6 +15,11 @@ namespace ContactsManager.API
     {
         #region Contact Detail Transformations
 
+        /// <summary>
+        /// Transform Model object to the API Response Object
+        /// </summary>
+        /// <param name="contactInformation"></param>
+        /// <returns></returns>
         public static IEnumerable<ContactDetailResponseModel> TransformToReponseObject(this IEnumerable<ContactInformation> contactInformation)
         {
             var listOfContactDetails = new List<ContactDetailResponseModel>();

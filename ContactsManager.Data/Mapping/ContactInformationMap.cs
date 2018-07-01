@@ -1,16 +1,24 @@
-using System.ComponentModel.DataAnnotations.Schema;
+#region Namespaces
+
 using System.Data.Entity.ModelConfiguration;
+
+#endregion
 
 namespace ContactsManager.Data.Models.Mapping
 {
+    /// <summary>
+    /// ContactInformationMap
+    /// </summary>
     public class ContactInformationMap : EntityTypeConfiguration<ContactInformation>
     {
+        /// <summary>
+        /// ContactInformationMap
+        /// </summary>
         public ContactInformationMap()
         {
-            // Primary Key
+            // Primary Key - UserId
             this.HasKey(t => t.UserId);
 
-            // Properties
             this.Property(t => t.FirstName)
                 .IsRequired()
                 .HasMaxLength(20);

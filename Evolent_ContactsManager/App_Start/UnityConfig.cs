@@ -1,9 +1,13 @@
+#region Namespaces
+
 using ContactsManager.Data.Models;
 using ContactsManager.Repository.Repository;
 using ContactsManager.Services;
 using System;
 using System.Data.Entity;
 using Unity;
+
+#endregion
 
 namespace ContactsManager.API
 {

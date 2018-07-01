@@ -21,8 +21,8 @@ G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Debug\Tracka
 G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Debug\EntityFramework.xml
 G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Debug\EntityFramework.SqlServer.xml
 G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Debug\TrackableEntities.Common.xml
-G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Debug\ContactsManager.Entities.csprojResolveAssemblyReference.cache
 G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Debug\ContactsManager.Entities.csproj.CoreCompileInputs.cache
 G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Debug\ContactsManager.Entities.csproj.CopyComplete
 G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Debug\ContactsManager.Entities.dll
 G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Debug\ContactsManager.Entities.pdb
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Debug\ContactsManager.Entities.csprojResolveAssemblyReference.cache

@@ -20,6 +20,27 @@
             </summary>
             <returns>string</returns>
         </member>
+        <member name="T:Evolent_ContactsManager.WebApiConfig">
+            <summary>
+            WebApiConfiguration
+            </summary>
+        </member>
+        <member name="M:Evolent_ContactsManager.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Register WebApi
+            </summary>
+            <param name="config">HttpConfiguration</param>
+        </member>
+        <member name="T:Evolent_ContactsManager.WebApiApplication">
+            <summary>
+            WebApiApplication
+            </summary>
+        </member>
+        <member name="M:Evolent_ContactsManager.WebApiApplication.Application_Start">
+            <summary>
+            Application Start
+            </summary>
+        </member>
         <member name="T:ContactsManager.API.UnityConfig">
             <summary>
             Specifies the Unity configuration for the main container.
@@ -131,6 +152,11 @@
             Identifies if respective Contact Information is Active or Not
             </summary>
         </member>
+        <member name="M:ContactsManager.API.Models.ContactDetailRequestModel.ValidateRequest">
+            <summary>
+            Validation of Request
+            </summary>
+        </member>
         <member name="P:ContactsManager.API.Models.ContactDetailResponseModel.ContactId">
             <summary>
             Identifies Unique ContactId
@@ -161,15 +187,12 @@
             Identifies if respective Contact Information is Active or Not
             </summary>
         </member>
-        <member name="P:ContactsManager.API.Models.ErrorInfo.Code">
+        <member name="M:ContactsManager.API.ObjectTransformer.TransformToReponseObject(System.Collections.Generic.IEnumerable{ContactsManager.Data.Models.ContactInformation})">
             <summary>
-            Error Code
+            Transform Model object to the API Response Object
             </summary>
-        </member>
-        <member name="P:ContactsManager.API.Models.ErrorInfo.Message">
-            <summary>
-            Error Message
-            </summary>
+            <param name="contactInformation"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

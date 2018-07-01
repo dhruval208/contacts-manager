@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ContactsManager.API</name>
+    </assembly>
+    <members>
+        <member name="T:Evolent_ContactsManager.SwaggerConfig">
+            <summary>
+            Swagger Configuration
+            </summary>
+        </member>
+        <member name="M:Evolent_ContactsManager.SwaggerConfig.Register">
+            <summary>
+            Register Swagger
+            </summary>
+        </member>
+        <member name="M:Evolent_ContactsManager.SwaggerConfig.GetXmlCommentsPath">
+            <summary>
+            This will return a path where Swagger XML Coments are generated
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="T:ContactsManager.API.UnityConfig">
+            <summary>
+            Specifies the Unity configuration for the main container.
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.UnityConfig.Container">
+            <summary>
+            Configured Unity Container.
+            </summary>
+        </member>
+        <member name="M:ContactsManager.API.UnityConfig.RegisterTypes(Unity.IUnityContainer)">
+            <summary>
+            Registers the type mappings with the Unity container.
+            </summary>
+            <param name="container">The unity container to configure.</param>
+            <remarks>
+            There is no need to register concrete types such as controllers or
+            API controllers (unless you want to change the defaults), as Unity
+            allows resolving a concrete type even if it was not previously
+            registered.
+            </remarks>
+        </member>
+        <member name="T:ContactsManager.API.UnityWebApiActivator">
+            <summary>
+            Provides the bootstrapping for integrating Unity with WebApi when it is hosted in ASP.NET.
+            </summary>
+        </member>
+        <member name="M:ContactsManager.API.UnityWebApiActivator.Start">
+            <summary>
+            Integrates Unity when the application starts.
+            </summary>
+        </member>
+        <member name="M:ContactsManager.API.UnityWebApiActivator.Shutdown">
+            <summary>
+            Disposes the Unity container when the application is shut down.
+            </summary>
+        </member>
+        <member name="T:ContactsManager.API.Controllers.ContactsController">
+            <summary>
+            ContactsController
+            Contains Below mentioned API's
+            - GetContacts: Retrives all the contacts whose status is true (Active)
+            - AddContact: Adds new contact information to the system. Will validate each request parameters according to the business rules.
+            - EditContact: Edits contact information based on contact information unique Id.
+            - DeleteContact: Updates the status of specific contact Can be either true (Active) || false (InActive)
+            </summary>
+        </member>
+        <member name="F:ContactsManager.API.Controllers.ContactsController._contactsService">
+            <summary>
+            IContactsService interface variable
+            </summary>
+        </member>
+        <member name="M:ContactsManager.API.Controllers.ContactsController.#ctor(ContactsManager.Services.IContactsService)">
+            <summary>
+            ContactsController Constructor
+            </summary>
+            <param name="contactsService">IContactsService</param>
+        </member>
+        <member name="M:ContactsManager.API.Controllers.ContactsController.GetContacts">
+            <summary>
+            Returns Active Contacts Information.
+            </summary>
+            <returns>List of ContactDetail</returns>
+        </member>
+        <member name="M:ContactsManager.API.Controllers.ContactsController.AddContact(ContactsManager.API.Models.ContactDetailRequestModel)">
+            <summary>
+            Saving Contact Information to the system.
+            </summary>
+            <returns>HttpStatusCode</returns>
+        </member>
+        <member name="M:ContactsManager.API.Controllers.ContactsController.EditContact(ContactsManager.API.Models.ContactDetailRequestModel,System.Guid)">
+            <summary>
+            Update Contact Detail based on ContactId
+            </summary>
+            <param name="contactDetailRequestModel">ContactDetailRequestModel</param>
+            <param name="contactId">Guid</param>
+            <returns>HttpStatusCode</returns>
+        </member>
+        <member name="M:ContactsManager.API.Controllers.ContactsController.DeleteContact(System.Guid,System.String)">
+            <summary>
+            Delete Contact Detail with respect to Contact Id
+            </summary>
+            <param name="contactId">Guid</param>
+            <param name="status">string</param>
+            <returns>HttpStatusCode</returns>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailRequestModel.FirstName">
+            <summary>
+            Identifies FirstName of Customer
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailRequestModel.LastName">
+            <summary>
+            Identifies LastName of Customer
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailRequestModel.Email">
+            <summary>
+            Identifies Email Address of Customer
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailRequestModel.PhoneNumber">
+            <summary>
+            Identifies Phone Number of Customer. (Only 10 digit mobile number with country code is accepted. e.g. +919730823490)
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailRequestModel.Status">
+            <summary>
+            Identifies if respective Contact Information is Active or Not
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailResponseModel.ContactId">
+            <summary>
+            Identifies Unique ContactId
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailResponseModel.FirstName">
+            <summary>
+            Identifies FirstName of Customer
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailResponseModel.LastName">
+            <summary>
+            Identifies LastName of Customer
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailResponseModel.Email">
+            <summary>
+            Identifies Email Address of Customer
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailResponseModel.PhoneNumber">
+            <summary>
+            Identifies Phone Number of Customer. (Only 10 digit mobile number with country code is accepted. e.g. +91 9730823490)
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ContactDetailResponseModel.Status">
+            <summary>
+            Identifies if respective Contact Information is Active or Not
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ErrorInfo.Code">
+            <summary>
+            Error Code
+            </summary>
+        </member>
+        <member name="P:ContactsManager.API.Models.ErrorInfo.Message">
+            <summary>
+            Error Message
+            </summary>
+        </member>
+    </members>
+</doc>

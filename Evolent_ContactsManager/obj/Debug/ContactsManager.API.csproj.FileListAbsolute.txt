@@ -132,3 +132,4 @@ G:\GIT\ContactManager\contacts-manager\Evolent_ContactsManager\obj\Debug\Contact
 G:\GIT\ContactManager\contacts-manager\Evolent_ContactsManager\obj\Debug\ContactsManager.API.csproj.CopyComplete
 G:\GIT\ContactManager\contacts-manager\Evolent_ContactsManager\obj\Debug\ContactsManager.API.dll
 G:\GIT\ContactManager\contacts-manager\Evolent_ContactsManager\obj\Debug\ContactsManager.API.pdb
+G:\GIT\ContactManager\contacts-manager\Evolent_ContactsManager\bin\SwaggerXml\ContactsManager.xml

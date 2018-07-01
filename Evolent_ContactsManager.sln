@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsManager.API", "Evolent_ContactsManager\ContactsManager.API.csproj", "{81AE026B-3049-4574-92D0-99B532965F6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evolent_ContactsManager.Tests", "Evolent_ContactsManager.Tests\Evolent_ContactsManager.Tests.csproj", "{3941D788-F63D-4D89-B5E8-36F64706D3EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsManager.Tests", "Evolent_ContactsManager.Tests\ContactsManager.Tests.csproj", "{3941D788-F63D-4D89-B5E8-36F64706D3EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsManager.Data", "ContactsManager.Data\ContactsManager.Data.csproj", "{C5F7A22C-FF5C-45F3-B0FE-AE558384F4EE}"
 EndProject

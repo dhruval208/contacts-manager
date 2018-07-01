@@ -1,0 +1,14 @@
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Release\ContactsManager.Entities.dll.config
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Release\ContactsManager.Entities.dll
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Release\ContactsManager.Entities.pdb
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Release\EntityFramework.dll
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Release\EntityFramework.SqlServer.dll
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Release\TrackableEntities.Common.dll
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Release\EntityFramework.xml
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Release\EntityFramework.SqlServer.xml
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\bin\Release\TrackableEntities.Common.xml
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Release\ContactsManager.Entities.csprojResolveAssemblyReference.cache
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Release\ContactsManager.Entities.csproj.CoreCompileInputs.cache
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Release\ContactsManager.Entities.csproj.CopyComplete
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Release\ContactsManager.Entities.dll
+G:\GIT\ContactManager\contacts-manager\ContactsManager.Entities\obj\Release\ContactsManager.Entities.pdb

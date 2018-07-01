@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region Namespaces
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+
+#endregion
 
 namespace ContactsManager.API.Models
 {
@@ -33,6 +37,9 @@ namespace ContactsManager.API.Models
         /// </summary>
         public string Status { get; set; }
 
+        /// <summary>
+        /// Validation of Request
+        /// </summary>
         public void ValidateRequest()
         {
             if (string.IsNullOrEmpty(FirstName))
@@ -66,15 +73,12 @@ namespace ContactsManager.API.Models
                 throw new ArgumentNullException("PhoneNumber");
 
             /* Supported Phone Number formats are:
-             * "+91-9678967101", "9678967101", "+91-9678-967101", "+91-96789-67101", "+919678967101"
+             * "xxxxxxxxxx", "+xx xx xxxxxxxx", "xxx-xxxx-xxxx"
              */
-            var isValidPhoneNumber = Regex.IsMatch(PhoneNumber, @"^\+?\d{0,2}\-?\d{4,5}\-?\d{5,6}", RegexOptions.IgnoreCase);
+            var isValidPhoneNumber = Regex.IsMatch(PhoneNumber, @"(^[0-9]{10}$)|(^\+[0-9]{2}\s+[0-9]{2}[0-9]{8}$)|(^[0-9]{3}-[0-9]{4}-[0-9]{4}$)", RegexOptions.IgnoreCase);
 
             if (!isValidPhoneNumber)
                 throw new ArgumentException("Invalid PhoneNumber");
-
-            if (Status.ToLower() != "active" && Status.ToLower() != "inactive")
-                throw new ArgumentException("Status can be either Active or InActive");
         }
     }
 

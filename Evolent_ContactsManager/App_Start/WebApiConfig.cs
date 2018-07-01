@@ -1,12 +1,23 @@
-﻿using System;
+﻿#region Namespaces
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
+#endregion
+
 namespace Evolent_ContactsManager
 {
+    /// <summary>
+    /// WebApiConfiguration
+    /// </summary>
     public static class WebApiConfig
     {
+        /// <summary>
+        /// Register WebApi
+        /// </summary>
+        /// <param name="config">HttpConfiguration</param>
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services

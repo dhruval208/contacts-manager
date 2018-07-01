@@ -61,7 +61,7 @@ namespace ContactsManager.API.Controllers
                 var allContacts = _contactsService.GetAllActiveContacts(x => x.Status == true);
 
                 if (allContacts.Count() == 0)
-                    return Content(HttpStatusCode.NoContent, "No Records Exists");
+                    return NotFound();
 
                 return Ok(allContacts.TransformToReponseObject());
             }
@@ -80,27 +80,27 @@ namespace ContactsManager.API.Controllers
         [SwaggerResponse(HttpStatusCode.OK, "Contact Details Successfully Saved", typeof(HttpStatusCode))]
         [SwaggerResponse(HttpStatusCode.BadRequest, "Invalid - Empty Information Found")]
         [SwaggerResponse(HttpStatusCode.InternalServerError, "Exception Occured to Add Contact Detail", typeof(Exception))]
-        public IHttpActionResult AddContact(ContactDetailRequestModel contactDetail)
+        public IHttpActionResult AddContact(ContactDetailRequestModel contactDetailRequestModel)
         {
             try
             {
-                contactDetail.ValidateRequest();
+                contactDetailRequestModel.ValidateRequest();
 
                 //FirstName and LastName can be duplicated in Database.
                 //Email Address and PhoneNumber should be unique in Database.
                 //Checked for the duplication of EmailAddress and PhoneNumber combination. Should not be duplicated with either Active or InActive contacts.
-                var isEmailExists = _contactsService.IsAnyExists(x => x.Email == contactDetail.Email && x.PhoneNumber == contactDetail.PhoneNumber);
+                var isEmailExists = _contactsService.IsAnyExists(x => x.Email == contactDetailRequestModel.Email && x.PhoneNumber == contactDetailRequestModel.PhoneNumber);
 
                 if (isEmailExists)
                     return BadRequest("Email Address already exists !");
 
                 _contactsService.AddContact(new ContactInformation
                 {
-                    Email = contactDetail.Email,
-                    FirstName = contactDetail.FirstName,
-                    LastName = contactDetail.LastName,
-                    PhoneNumber = contactDetail.PhoneNumber,
-                    Status = contactDetail.Status.ToLower() == "active" ? true : false,
+                    Email = contactDetailRequestModel.Email,
+                    FirstName = contactDetailRequestModel.FirstName,
+                    LastName = contactDetailRequestModel.LastName,
+                    PhoneNumber = contactDetailRequestModel.PhoneNumber,
+                    Status = contactDetailRequestModel.Status.ToLower() == "active" ? true : false,
                     UserId = Guid.NewGuid()
                 });
 
@@ -138,10 +138,11 @@ namespace ContactsManager.API.Controllers
                 if (!isUserIdExists)
                     throw new ArgumentException("Invalid ContactId. Please enter valid ContactId");
 
-                var isEmailExists = _contactsService.IsAnyExists(x => x.Email == contactDetailRequestModel.Email);
+                //Here,We will check for any other user's contact email and phone. If not exists then valid, Otherwise invalid
+                var isEmailExists = _contactsService.IsAnyExists(x => x.Email == contactDetailRequestModel.Email && x.PhoneNumber == contactDetailRequestModel.PhoneNumber && x.UserId != contactId);
 
                 if (isEmailExists)
-                    throw new ArgumentException("Email already exists. Please enter valid email address");
+                    throw new ArgumentException("Email & Phone already exists. Please enter valid email address");
 
                 var contactInformation = _contactsService.GetContactById(contactId);
                 contactInformation.Email = contactDetailRequestModel.Email;
@@ -174,14 +175,11 @@ namespace ContactsManager.API.Controllers
         [HttpDelete]
         [SwaggerResponse(HttpStatusCode.OK, "Contact Details Successfully Deleted", typeof(HttpStatusCode))]
         [SwaggerResponse(HttpStatusCode.InternalServerError, "Exception Occured while Deleting Contact Detail", typeof(Exception))]
-        [SwaggerResponse(HttpStatusCode.BadRequest, "Duplicate-Invalid-Missing Information Provided")]
+        [SwaggerResponse(HttpStatusCode.BadRequest, "Duplicate - Invalid-Missing Information Provided")]
         public IHttpActionResult DeleteContact(Guid contactId, string status)
         {
             try
             {
-                if (status.ToLower() != "active" && status.ToLower() != "inactive")
-                    throw new ArgumentException("Status can be either Active or InActive");
-
                 var isUserIdExists = _contactsService.IsAnyExists(x => x.UserId == contactId);
 
                 if (!isUserIdExists)

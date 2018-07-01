@@ -8,7 +8,8 @@ namespace ContactsManager.Data.Models
     {
         static EvolentContext()
         {
-            Database.SetInitializer<EvolentContext>(null);
+            //Database.SetInitializer<EvolentContext>(null);
+            Database.SetInitializer<EvolentContext>(new CreateDatabaseIfNotExists<EvolentContext>());
         }
 
         public EvolentContext()

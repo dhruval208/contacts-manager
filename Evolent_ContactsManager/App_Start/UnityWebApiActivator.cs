@@ -1,6 +1,9 @@
-using System.Web.Http;
+#region Namespaces
 
+using System.Web.Http;
 using Unity.AspNet.WebApi;
+
+#endregion
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ContactsManager.API.UnityWebApiActivator), nameof(ContactsManager.API.UnityWebApiActivator.Start))]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(ContactsManager.API.UnityWebApiActivator), nameof(ContactsManager.API.UnityWebApiActivator.Shutdown))]
