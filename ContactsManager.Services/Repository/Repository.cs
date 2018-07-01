@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -38,20 +39,20 @@ namespace ContactsManager.Repository.Repository
         /// Insert Record
         /// </summary>
         /// <param name="entity">TEntity</param>
-        public virtual void Insert(TEntity entity)
+        public virtual async Task Insert(TEntity entity)
         {
             Context.Set<TEntity>().Add(entity);
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
         }
 
         /// <summary>
         /// Update Record
         /// </summary>
         /// <param name="entity">TEntity</param>
-        public void Update(TEntity entity)
+        public async Task Update(TEntity entity)
         {
             Context.Entry(entity).State = EntityState.Modified;
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -59,18 +60,18 @@ namespace ContactsManager.Repository.Repository
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <returns>bool</returns>
-        public bool IsAnyExists(Expression<Func<TEntity, bool>> predicate)
+        public async Task<bool> IsAnyExists(Expression<Func<TEntity, bool>> predicate)
         {
-            return Context.Set<TEntity>().Any(predicate);
+            return await Context.Set<TEntity>().AnyAsync(predicate);
         }
 
         /// <summary>
         /// GetAll Records
         /// </summary>
         /// <returns>TEntity</returns>
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
-            return Context.Set<TEntity>().ToList();
+            return await Context.Set<TEntity>().ToListAsync();
         }
 
         /// <summary>
@@ -78,9 +79,9 @@ namespace ContactsManager.Repository.Repository
         /// </summary>
         /// <param name="id">Guid</param>
         /// <returns>TEntity</returns>
-        public TEntity Get(Guid id)
+        public async Task<TEntity> Get(Guid id)
         {
-            return Context.Set<TEntity>().Find(id);
+            return await Context.Set<TEntity>().FindAsync(id);
         }
     }
 }

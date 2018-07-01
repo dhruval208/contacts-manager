@@ -5,6 +5,7 @@ using ContactsManager.Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -37,9 +38,9 @@ namespace ContactsManager.Services
         /// Add Contact Information - Returns Void
         /// </summary>
         /// <param name="contactInformation">ContactInformation</param>
-        public void AddContact(ContactInformation contactInformation)
+        public async Task AddContact(ContactInformation contactInformation)
         {
-            _contactInformationRepository.Insert(contactInformation);
+            await _contactInformationRepository.Insert(contactInformation);
         }
 
         /// <summary>
@@ -47,9 +48,9 @@ namespace ContactsManager.Services
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <returns>ContactInformation</returns>
-        public IEnumerable<ContactInformation> GetAllContacts()
+        public async Task<IEnumerable<ContactInformation>> GetAllContacts()
         {
-            return _contactInformationRepository.GetAll();
+            return await _contactInformationRepository.GetAll();
         }
 
         /// <summary>
@@ -57,9 +58,9 @@ namespace ContactsManager.Services
         /// </summary>
         /// <param name="contactId">Guid</param>
         /// <returns>ContactInformation</returns>
-        public ContactInformation GetContactById(Guid contactId)
+        public async Task<ContactInformation> GetContactById(Guid contactId)
         {
-            return _contactInformationRepository.Get(contactId);
+            return await _contactInformationRepository.Get(contactId);
         }
 
         /// <summary>
@@ -67,18 +68,18 @@ namespace ContactsManager.Services
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <returns>bool</returns>
-        public bool IsAnyExists(Expression<Func<ContactInformation, bool>> predicate)
+        public async Task<bool> IsAnyExists(Expression<Func<ContactInformation, bool>> predicate)
         {
-            return _contactInformationRepository.IsAnyExists(predicate);
+            return await _contactInformationRepository.IsAnyExists(predicate);
         }
 
         /// <summary>
         /// UpdateContact - Update contact details, Returns Void
         /// </summary>
         /// <param name="contactInformation">ContactInformation</param>
-        public void UpdateContact(ContactInformation contactInformation)
+        public async Task UpdateContact(ContactInformation contactInformation)
         {
-            _contactInformationRepository.Update(contactInformation);
+            await _contactInformationRepository.Update(contactInformation);
         }
     }
 }

@@ -7,47 +7,47 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
-    <_PublishTargetUrl>ftp://50.62.160.47/httpdocs</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\DD\Desktop\ContactMgr</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>07/01/2018 13:13:36</publishTime>
+      <publishTime>07/02/2018 00:46:06</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>07/01/2018 13:13:36</publishTime>
+      <publishTime>07/02/2018 00:46:06</publishTime>
     </File>
     <File Include="bin/ContactsManager.API.dll">
-      <publishTime>07/01/2018 13:12:33</publishTime>
+      <publishTime>07/02/2018 00:45:54</publishTime>
     </File>
     <File Include="bin/ContactsManager.API.pdb">
-      <publishTime>07/01/2018 13:12:33</publishTime>
+      <publishTime>07/02/2018 00:45:54</publishTime>
     </File>
     <File Include="bin/ContactsManager.Data.dll">
-      <publishTime>07/01/2018 13:12:27</publishTime>
+      <publishTime>07/02/2018 00:45:49</publishTime>
     </File>
     <File Include="bin/ContactsManager.Data.dll.config">
-      <publishTime>07/01/2018 13:09:46</publishTime>
+      <publishTime>07/01/2018 22:09:39</publishTime>
     </File>
     <File Include="bin/ContactsManager.Data.pdb">
-      <publishTime>07/01/2018 13:12:27</publishTime>
+      <publishTime>07/02/2018 00:45:49</publishTime>
     </File>
     <File Include="bin/ContactsManager.Entities.dll">
-      <publishTime>07/01/2018 13:12:27</publishTime>
+      <publishTime>07/02/2018 00:45:49</publishTime>
     </File>
     <File Include="bin/ContactsManager.Entities.dll.config">
       <publishTime>06/30/2018 15:11:06</publishTime>
     </File>
     <File Include="bin/ContactsManager.Entities.pdb">
-      <publishTime>07/01/2018 13:12:27</publishTime>
+      <publishTime>07/02/2018 00:45:49</publishTime>
     </File>
     <File Include="bin/ContactsManager.Services.dll">
-      <publishTime>07/01/2018 13:12:27</publishTime>
+      <publishTime>07/02/2018 00:45:49</publishTime>
     </File>
     <File Include="bin/ContactsManager.Services.dll.config">
       <publishTime>06/30/2018 18:26:59</publishTime>
     </File>
     <File Include="bin/ContactsManager.Services.pdb">
-      <publishTime>07/01/2018 13:12:27</publishTime>
+      <publishTime>07/02/2018 00:45:49</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>10/23/2017 13:15:18</publishTime>
@@ -143,7 +143,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2018 13:38:22</publishTime>
     </File>
     <File Include="bin/SwaggerXml/ContactsManager.xml">
-      <publishTime>07/01/2018 13:10:01</publishTime>
+      <publishTime>07/02/2018 00:44:58</publishTime>
     </File>
     <File Include="bin/Swashbuckle.Core.dll">
       <publishTime>07/08/2017 01:30:56</publishTime>
@@ -173,13 +173,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/05/2016 13:11:52</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>07/01/2018 13:13:27</publishTime>
+      <publishTime>07/02/2018 00:45:58</publishTime>
     </File>
     <File Include="SwaggerXml/ContactsManager.xml">
-      <publishTime>07/01/2018 13:10:01</publishTime>
+      <publishTime>07/02/2018 00:44:58</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/01/2018 13:13:25</publishTime>
+      <publishTime>07/02/2018 00:45:56</publishTime>
     </File>
   </ItemGroup>
 </Project>

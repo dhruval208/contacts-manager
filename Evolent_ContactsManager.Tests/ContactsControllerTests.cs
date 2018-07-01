@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using System.Web.Http.Results;
 
 
@@ -44,9 +45,9 @@ namespace Evolent_ContactsManager.Tests
         #region Get Contacts
 
         [TestMethod]
-        public void GetContact_HappyPath()
+        public async Task GetContact_HappyPath()
         {
-            contactsService.Setup(x => x.GetAllContacts()).Returns(new List<ContactInformation> {
+            contactsService.Setup(x => x.GetAllContacts()).ReturnsAsync(new List<ContactInformation> {
                 new ContactInformation
                 {
                     Email = "dhruval1@gmail.com",
@@ -76,7 +77,7 @@ namespace Evolent_ContactsManager.Tests
                 }
             });
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.GetContacts();
+            var response = await contactsController.GetContacts();
 
             Assert.IsInstanceOfType(response, typeof(OkNegotiatedContentResult<IEnumerable<ContactDetailResponseModel>>));
             var contentResult = response as OkNegotiatedContentResult<IEnumerable<ContactDetailResponseModel>>;
@@ -108,10 +109,10 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void GetContact_NoContent()
+        public async Task GetContact_NoContent()
         {
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.GetContacts();
+            var response = await contactsController.GetContacts();
 
             Assert.IsInstanceOfType(response, typeof(NotFoundResult));
         }
@@ -121,13 +122,13 @@ namespace Evolent_ContactsManager.Tests
         #region Add Contacts
 
         [TestMethod]
-        public void AddContact_HappyPath()
+        public async Task AddContact_HappyPath()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(false);
-            contactsService.Setup(c => c.AddContact(It.IsAny<ContactInformation>()));
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(false);
+            contactsService.Setup(c => c.AddContact(It.IsAny<ContactInformation>())).Returns(Task.FromResult(true));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.AddContact(new ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -143,13 +144,13 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void AddContact_Duplicate_Email()
+        public async Task AddContact_Duplicate_Email()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(true);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(true);
             contactsService.Setup(c => c.AddContact(It.IsAny<ContactInformation>()));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.AddContact(new ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -162,17 +163,17 @@ namespace Evolent_ContactsManager.Tests
             Assert.IsInstanceOfType(response, typeof(BadRequestErrorMessageResult));
 
             var contentResult = response as BadRequestErrorMessageResult;
-            Assert.IsTrue(contentResult.Message.Contains("Email Address already exists !"));
+            Assert.IsTrue(contentResult.Message.Contains("Email Address & PhoneNumber already exists !"));
         }
 
         [TestMethod]
-        public void AddContact_Empty_FirstName()
+        public async Task AddContact_Empty_FirstName()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(false);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(false);
             contactsService.Setup(c => c.AddContact(It.IsAny<ContactInformation>()));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.AddContact(new ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "",
@@ -188,13 +189,13 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void AddContact_Length_FirstName()
+        public async Task AddContact_Length_FirstName()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(false);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(false);
             contactsService.Setup(c => c.AddContact(It.IsAny<ContactInformation>()));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.AddContact(new ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "DHRUVAL891011121314151617",
@@ -210,13 +211,13 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void AddContact_Invalid_FirstName()
+        public async Task AddContact_Invalid_FirstName()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(false);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(false);
             contactsService.Setup(c => c.AddContact(It.IsAny<ContactInformation>()));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "$Dhruval",
@@ -232,13 +233,13 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void AddContact_Empty_LastName()
+        public async Task AddContact_Empty_LastName()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(false);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(false);
             contactsService.Setup(c => c.AddContact(It.IsAny<ContactInformation>()));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -254,13 +255,13 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void AddContact_Length_LastName()
+        public async Task AddContact_Length_LastName()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(false);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(false);
             contactsService.Setup(c => c.AddContact(It.IsAny<ContactInformation>()));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.AddContact(new ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -276,13 +277,13 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void AddContact_Invalid_LastName()
+        public async Task AddContact_Invalid_LastName()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(false);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(false);
             contactsService.Setup(c => c.AddContact(It.IsAny<ContactInformation>()));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.AddContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.AddContact(new ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -302,11 +303,12 @@ namespace Evolent_ContactsManager.Tests
         #region Edit Contacts
 
         [TestMethod]
-        public void EditContact_HappyPath()
+        public async Task EditContact_HappyPath()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsInOrder(true, false);
-            contactsService.Setup(c => c.UpdateContact(It.IsAny<ContactInformation>()));
-            contactsService.Setup(c => c.GetContactById(It.IsAny<Guid>())).Returns(new ContactInformation
+
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsInOrder(Task.FromResult<bool>(true), Task.FromResult<bool>(false));
+            contactsService.Setup(c => c.UpdateContact(It.IsAny<ContactInformation>())).Returns(Task.FromResult(true));
+            contactsService.Setup(c => c.GetContactById(It.IsAny<Guid>())).ReturnsAsync(new ContactInformation
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -317,7 +319,7 @@ namespace Evolent_ContactsManager.Tests
             });
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.EditContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.EditContact(new ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -333,11 +335,11 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void EditContact_ContactId_NotExixts()
+        public async Task EditContact_ContactId_NotExixts()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsInOrder(false, false);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsInOrder(Task.FromResult(false), Task.FromResult(false));
             contactsService.Setup(c => c.UpdateContact(It.IsAny<ContactInformation>()));
-            contactsService.Setup(c => c.GetContactById(It.IsAny<Guid>())).Returns(new ContactInformation
+            contactsService.Setup(c => c.GetContactById(It.IsAny<Guid>())).ReturnsAsync(new ContactInformation
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -348,7 +350,7 @@ namespace Evolent_ContactsManager.Tests
             });
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.EditContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.EditContact(new ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -364,11 +366,11 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void EditContact_Duplicate_Email()
+        public async Task EditContact_Duplicate_Email()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsInOrder(true, true);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsInOrder(Task.FromResult(true), Task.FromResult(true));
             contactsService.Setup(c => c.UpdateContact(It.IsAny<ContactInformation>()));
-            contactsService.Setup(c => c.GetContactById(It.IsAny<Guid>())).Returns(new ContactInformation
+            contactsService.Setup(c => c.GetContactById(It.IsAny<Guid>())).ReturnsAsync(new ContactInformation
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -379,7 +381,7 @@ namespace Evolent_ContactsManager.Tests
             });
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.EditContact(new ContactsManager.API.Models.ContactDetailRequestModel
+            var response = await contactsController.EditContact(new ContactDetailRequestModel
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -399,11 +401,11 @@ namespace Evolent_ContactsManager.Tests
         #region Delete Contact
 
         [TestMethod]
-        public void DeleteContact_HappyPath()
+        public async Task DeleteContact_HappyPath()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(true);
-            contactsService.Setup(c => c.UpdateContact(It.IsAny<ContactInformation>()));
-            contactsService.Setup(c => c.GetContactById(It.IsAny<Guid>())).Returns(new ContactInformation
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(true);
+            contactsService.Setup(c => c.UpdateContact(It.IsAny<ContactInformation>())).Returns(Task.FromResult(true));
+            contactsService.Setup(c => c.GetContactById(It.IsAny<Guid>())).ReturnsAsync(new ContactInformation
             {
                 Email = "dhruval20@gmail.com",
                 FirstName = "Dhruval",
@@ -414,7 +416,7 @@ namespace Evolent_ContactsManager.Tests
             });
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.DeleteContact(Guid.NewGuid());
+            var response = await contactsController.DeleteContact(Guid.NewGuid());
 
             Assert.IsInstanceOfType(response, typeof(OkNegotiatedContentResult<string>));
 
@@ -423,13 +425,13 @@ namespace Evolent_ContactsManager.Tests
         }
 
         [TestMethod]
-        public void DeleteContact_Invalid_ContactId()
+        public async Task DeleteContact_Invalid_ContactId()
         {
-            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).Returns(false);
+            contactsService.Setup(c => c.IsAnyExists(It.IsAny<Expression<Func<ContactInformation, bool>>>())).ReturnsAsync(false);
             contactsService.Setup(c => c.UpdateContact(It.IsAny<ContactInformation>()));
 
             var contactsController = new ContactsController(contactsService.Object);
-            var response = contactsController.DeleteContact(Guid.NewGuid());
+            var response = await contactsController.DeleteContact(Guid.NewGuid());
 
             Assert.IsInstanceOfType(response, typeof(BadRequestErrorMessageResult));
 

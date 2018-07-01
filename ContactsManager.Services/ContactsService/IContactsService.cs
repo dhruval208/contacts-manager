@@ -4,6 +4,7 @@ using ContactsManager.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -18,28 +19,28 @@ namespace ContactsManager.Services
         /// AddContact
         /// </summary>
         /// <param name="contactInformation">ContactInformation</param>
-        void AddContact(ContactInformation contactInformation);
+        Task AddContact(ContactInformation contactInformation);
 
         /// <summary>
         /// UpdateContact
         /// </summary>
         /// <param name="contactInformation">ContactInformation</param>
-        void UpdateContact(ContactInformation contactInformation);
+        Task UpdateContact(ContactInformation contactInformation);
 
         /// <summary>
         /// IsAnyExists
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <returns>bool</returns>
-        bool IsAnyExists(Expression<Func<ContactInformation, bool>> predicate);
+        Task<bool> IsAnyExists(Expression<Func<ContactInformation, bool>> predicate);
 
         /// <summary>
         /// GetAllActiveContacts
         /// </summary>
         /// <param name="predicate">Predicate</param>
         /// <returns>ContactInformation</returns>
-        IEnumerable<ContactInformation> GetAllContacts();
+        Task<IEnumerable<ContactInformation>> GetAllContacts();
 
-        ContactInformation GetContactById(Guid contactId);
+        Task<ContactInformation> GetContactById(Guid contactId);
     }
 }

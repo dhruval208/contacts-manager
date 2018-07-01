@@ -20,6 +20,27 @@
             </summary>
             <returns>string</returns>
         </member>
+        <member name="T:Evolent_ContactsManager.WebApiConfig">
+            <summary>
+            WebApiConfiguration
+            </summary>
+        </member>
+        <member name="M:Evolent_ContactsManager.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Register WebApi
+            </summary>
+            <param name="config">HttpConfiguration</param>
+        </member>
+        <member name="T:Evolent_ContactsManager.WebApiApplication">
+            <summary>
+            WebApiApplication
+            </summary>
+        </member>
+        <member name="M:Evolent_ContactsManager.WebApiApplication.Application_Start">
+            <summary>
+            Application Start
+            </summary>
+        </member>
         <member name="T:ContactsManager.API.UnityConfig">
             <summary>
             Specifies the Unity configuration for the main container.
@@ -98,12 +119,11 @@
             <param name="contactId">Guid</param>
             <returns>HttpStatusCode</returns>
         </member>
-        <member name="M:ContactsManager.API.Controllers.ContactsController.DeleteContact(System.Guid,System.String)">
+        <member name="M:ContactsManager.API.Controllers.ContactsController.DeleteContact(System.Guid)">
             <summary>
             Delete Contact Detail with respect to Contact Id
             </summary>
             <param name="contactId">Guid</param>
-            <param name="status">string</param>
             <returns>HttpStatusCode</returns>
         </member>
         <member name="P:ContactsManager.API.Models.ContactDetailRequestModel.FirstName">
@@ -129,6 +149,11 @@
         <member name="P:ContactsManager.API.Models.ContactDetailRequestModel.Status">
             <summary>
             Identifies if respective Contact Information is Active or Not
+            </summary>
+        </member>
+        <member name="M:ContactsManager.API.Models.ContactDetailRequestModel.ValidateRequest">
+            <summary>
+            Validation of Request
             </summary>
         </member>
         <member name="P:ContactsManager.API.Models.ContactDetailResponseModel.ContactId">
@@ -161,15 +186,12 @@
             Identifies if respective Contact Information is Active or Not
             </summary>
         </member>
-        <member name="P:ContactsManager.API.Models.ErrorInfo.Code">
+        <member name="M:ContactsManager.API.ObjectTransformer.TransformToReponseObject(System.Collections.Generic.IEnumerable{ContactsManager.Data.Models.ContactInformation})">
             <summary>
-            Error Code
+            Transform Model object to the API Response Object
             </summary>
-        </member>
-        <member name="P:ContactsManager.API.Models.ErrorInfo.Message">
-            <summary>
-            Error Message
-            </summary>
+            <param name="contactInformation"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
